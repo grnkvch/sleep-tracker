@@ -1,2 +1,3 @@
 User-agent: *
-Disallow: /
+Allow: /sleep-tracker/
+Sitemap: https://grnkvch.github.io/sleep-tracker/sitemap.xml
