@@ -1,5 +1,6 @@
 ---
 import RecommendationCard from '../product/RecommendationCard.astro';
+import TelegramChatMock from './TelegramChatMock.astro';
 import type { DemoContent } from '../../config/content-schema';
 
 interface Props {
@@ -39,24 +40,7 @@ const { demo, labels } = Astro.props;
         class="channel-preview__panel channel-preview__panel--telegram"
         aria-labelledby="hero-channel-telegram-label"
       >
-        <div class="chat-shell">
-          <div class="chat-shell__top">
-            <span class="status-dot"></span>{labels.telegram}
-          </div>
-          <dl class="chat-bubble chat-bubble--user channel-preview__event">
-            <div>
-              <dt>{demo.lastWakeLabel}</dt>
-              <dd>{demo.lastWakeTime}</dd>
-            </div>
-            <div>
-              <dt>{demo.lastSleepLabel}</dt>
-              <dd>{demo.lastSleepDuration}</dd>
-            </div>
-          </dl>
-          <div class="chat-bubble chat-bubble--assistant">
-            <RecommendationCard demo={demo} compact />
-          </div>
-        </div>
+        <TelegramChatMock demo={demo} />
       </section>
 
       <section

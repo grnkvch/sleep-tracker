@@ -1,0 +1,152 @@
+---
+import RecommendationCard from '../product/RecommendationCard.astro';
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  demo: DemoContent;
+  assistantLabel?: string;
+  entryLabel?: string;
+}
+
+const { demo, assistantLabel = 'Помощник', entryLabel } = Astro.props;
+const userMessage =
+  entryLabel ??
+  `${demo.lastWakeLabel}: ${demo.lastWakeTime}. ${demo.lastSleepLabel}: ${demo.lastSleepDuration}.`;
+---
+
+<div class="telegram-chat" aria-label={`Чат с ботом «${assistantLabel}» в Telegram`}>
+  <div class="telegram-chat__status" aria-hidden="true">
+    <span>9:41</span>
+    <span class="telegram-chat__status-icons">
+      <svg viewBox="0 0 16 12"
+        ><path d="M1 9h2V6H1v3Zm4 0h2V4H5v5Zm4 0h2V2H9v7Zm4 0h2V0h-2v9Z"></path></svg
+      >
+      <svg viewBox="0 0 18 12"
+        ><path
+          d="M1 4.5C5.4.5 12.6.5 17 4.5M4 7.5c2.7-2.4 5.3-2.4 8 0M7 10.2c.7-.7 1.3-.7 2 0"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.7"
+          stroke-linecap="round"></path></svg
+      >
+      <svg viewBox="0 0 24 12"
+        ><rect
+          x="1"
+          y="1"
+          width="19"
+          height="10"
+          rx="3"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"></rect><path
+          d="M22 4v4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+          stroke-linecap="round"></path><rect x="3" y="3" width="15" height="6" rx="1.5"
+        ></rect></svg
+      >
+    </span>
+  </div>
+
+  <header class="telegram-chat__header">
+    <span class="telegram-chat__back" aria-hidden="true">
+      <svg viewBox="0 0 24 24"
+        ><path
+          d="m15 5-7 7 7 7"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path></svg
+      >
+    </span>
+    <span class="telegram-chat__avatar" aria-hidden="true">
+      <svg viewBox="0 0 40 40"
+        ><path
+          d="M27.7 26.5A11 11 0 0 1 15.4 9.2 11.2 11.2 0 1 0 30.8 24a11 11 0 0 1-3.1 2.5Z"
+          fill="currentColor"></path><circle cx="28.5" cy="11.5" r="2" fill="currentColor"
+        ></circle></svg
+      >
+    </span>
+    <span class="telegram-chat__identity">
+      <strong>{assistantLabel}</strong>
+      <small>бот</small>
+    </span>
+    <span class="telegram-chat__header-actions" aria-hidden="true">
+      <svg viewBox="0 0 24 24"
+        ><circle cx="11" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2"
+        ></circle><path
+          d="m16 16 4 4"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"></path></svg
+      >
+      <svg viewBox="0 0 24 24"
+        ><circle cx="12" cy="5" r="1.8"></circle><circle cx="12" cy="12" r="1.8"></circle><circle
+          cx="12"
+          cy="19"
+          r="1.8"></circle></svg
+      >
+    </span>
+  </header>
+
+  <div class="telegram-chat__conversation">
+    <span class="telegram-chat__day">{demo.todayLabel}</span>
+
+    <div class="telegram-message telegram-message--outgoing">
+      <p>{userMessage}</p>
+      <span class="telegram-message__meta">14:11 <b aria-label="Доставлено и прочитано">✓✓</b></span
+      >
+    </div>
+
+    <div class="telegram-message telegram-message--incoming">
+      <RecommendationCard demo={demo} compact />
+      <span class="telegram-message__meta">14:12</span>
+    </div>
+  </div>
+
+  <div class="telegram-chat__keyboard" aria-hidden="true">
+    <span>{demo.lastWakeLabel}</span>
+    <span>{demo.lastSleepLabel}</span>
+  </div>
+
+  <div class="telegram-chat__composer" aria-hidden="true">
+    <svg viewBox="0 0 24 24"
+      ><path
+        d="m8.5 12.7 6.8-6.8a3.2 3.2 0 0 1 4.5 4.5L10.2 20a5 5 0 0 1-7.1-7.1l9-9"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"></path></svg
+    >
+    <span>Сообщение</span>
+    <svg viewBox="0 0 24 24"
+      ><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"
+      ></circle><circle cx="9" cy="10" r="1.2"></circle><circle cx="15" cy="10" r="1.2"
+      ></circle><path
+        d="M8 15c2.5 2 5.5 2 8 0"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"></path></svg
+    >
+    <svg viewBox="0 0 24 24"
+      ><rect
+        x="8"
+        y="3"
+        width="8"
+        height="13"
+        rx="4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"></rect><path
+        d="M5 12a7 7 0 0 0 14 0M12 19v3"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.8"
+        stroke-linecap="round"></path></svg
+    >
+  </div>
+</div>
