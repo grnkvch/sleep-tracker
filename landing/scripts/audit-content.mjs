@@ -46,7 +46,11 @@ for (const profile of profiles) {
       (html.match(/<figure(?:\s|>)/g) ?? []).length ===
       (html.match(/<figcaption(?:\s|>)/g) ?? []).length,
     noForbiddenMarkers: forbidden.every((marker) => !text.includes(marker)),
-    illustrativeCaption: text.includes('Пример подсказки') && text.includes('Пример интерфейса'),
+    previewDemoLabels:
+      text.includes('Подсказка после короткого сна') &&
+      text.includes('Что помощник покажет после отметки сна') &&
+      !text.includes('Пример подсказки') &&
+      !text.includes('Пример интерфейса'),
     profileMatches: html.includes(`data-launch-profile="${profile}"`),
     hybridChoice:
       profile !== 'hybrid' ||
