@@ -263,6 +263,28 @@ export const features = getFeatures(facts);
 
   </div>
 
+{features.pricing && (
+
+  <div className="offer-steps">
+    <h3>Два варианта подписки</h3>
+
+      <div className="benefits-grid">
+        <article className="benefit-card">
+          <p className="eyebrow">1 месяц</p>
+          <h3>{facts.pricing.monthly?.toLocaleString('ru-RU')} {facts.pricing.currency}</h3>
+          <p>990 ₽ в месяц. Подходит, чтобы попробовать помощника в текущей ситуации.</p>
+        </article>
+
+        <article className="benefit-card">
+          <p className="eyebrow">1 год · выгоднее</p>
+          <h3>{facts.pricing.yearly?.toLocaleString('ru-RU')} {facts.pricing.currency}</h3>
+          <p>Около 500 ₽ в месяц. Экономия 5 890 ₽ по сравнению с помесячной оплатой.</p>
+        </article>
+      </div>
+
+  </div>
+)}
+
 <div className="offer-action">
   <LaunchCta launch={launch} mode={mode} placement="offer" choiceLabel={launch.choiceLabel} />
   <p>

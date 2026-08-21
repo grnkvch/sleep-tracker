@@ -52,6 +52,13 @@ for (const profile of profiles) {
       !text.includes('Пример подсказки') &&
       !text.includes('Пример интерфейса'),
     noHintNouns: !/\bподсказ(?:ка|ки|ку|ке|кой|ок|ками|ках)\b/i.test(text),
+    pricing:
+      text.includes('1 месяц') &&
+      text.includes('990 ₽') &&
+      text.includes('1 год · выгоднее') &&
+      text.includes('5 990 ₽') &&
+      text.includes('Около 500 ₽ в месяц') &&
+      text.includes('Экономия 5 890 ₽'),
     profileMatches: html.includes(`data-launch-profile="${profile}"`),
     hybridChoice:
       profile !== 'hybrid' ||
