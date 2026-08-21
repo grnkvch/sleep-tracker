@@ -10,11 +10,11 @@ expertReview:
   qualification: null
   consentConfirmed: false
 pricing:
-  enabled: false
-  status: unverified
-  monthly: null
-  yearly: null
-  currency: null
+  enabled: true
+  status: verified
+  monthly: 990
+  yearly: 5990
+  currency: '₽'
 trial:
   enabled: false
   status: unverified
