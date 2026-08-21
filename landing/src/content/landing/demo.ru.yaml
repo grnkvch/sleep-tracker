@@ -1,6 +1,6 @@
 status: illustrative
-caption: 'Пример подсказки'
-interfaceCaption: 'Пример интерфейса'
+caption: 'Подсказка после короткого сна'
+interfaceCaption: 'Что помощник покажет после отметки сна'
 todayLabel: 'Сегодня'
 lastWakeLabel: 'Малыш проснулся'
 lastWakeTime: '14:10'
