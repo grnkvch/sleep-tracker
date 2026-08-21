@@ -1,5 +1,6 @@
 ---
 import RecommendationCard from '../product/RecommendationCard.astro';
+import TelegramChatMock from './TelegramChatMock.astro';
 import type { DemoContent } from '../../config/content-schema';
 
 interface Props {
@@ -12,8 +13,45 @@ const { demo, labels } = Astro.props;
 
 <figure class="hero-visual hero-visual--neutral" aria-labelledby="hero-neutral-caption">
   <figcaption id="hero-neutral-caption">{demo.caption}</figcaption>
-  <div class="channel-chips" aria-hidden="true">
-    <span>{labels.telegram}</span><span>{labels.web}</span>
+  <div class="channel-preview">
+    <input
+      class="channel-preview__input channel-preview__input--telegram"
+      type="radio"
+      name="hero-channel"
+      id="hero-channel-telegram"
+      checked
+    />
+    <input
+      class="channel-preview__input channel-preview__input--web"
+      type="radio"
+      name="hero-channel"
+      id="hero-channel-web"
+    />
+
+    <div class="channel-preview__tabs" aria-label={demo.interfaceCaption}>
+      <label id="hero-channel-telegram-label" for="hero-channel-telegram">
+        {labels.telegram}
+      </label>
+      <label id="hero-channel-web-label" for="hero-channel-web">{labels.web}</label>
+    </div>
+
+    <div class="channel-preview__panels">
+      <section
+        class="channel-preview__panel channel-preview__panel--telegram"
+        aria-labelledby="hero-channel-telegram-label"
+      >
+        <TelegramChatMock demo={demo} />
+      </section>
+
+      <section
+        class="channel-preview__panel channel-preview__panel--web"
+        aria-labelledby="hero-channel-web-label"
+      >
+        <div class="app-shell">
+          <div class="app-shell__top"><span></span><strong>{labels.web}</strong><span></span></div>
+          <RecommendationCard demo={demo} compact />
+        </div>
+      </section>
+    </div>
   </div>
-  <RecommendationCard demo={demo} compact />
 </figure>
