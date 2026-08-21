@@ -34,6 +34,19 @@ test('legal pages and 404 are available', async ({ page }) => {
   expect(response?.status()).toBe(404);
 });
 
+test('hybrid hero switches between Telegram and web examples', async ({ page }) => {
+  await page.goto('http://127.0.0.1:4175/');
+  const telegram = page.locator('#hero-channel-telegram');
+  const web = page.locator('#hero-channel-web');
+
+  await expect(telegram).toBeChecked();
+  await expect(page.locator('.channel-preview__panel--telegram')).toBeVisible();
+  await page.locator('label[for="hero-channel-web"]').click();
+  await expect(web).toBeChecked();
+  await expect(page.locator('.channel-preview__panel--web')).toBeVisible();
+  await expect(page.locator('.channel-preview__panel--telegram')).toBeHidden();
+});
+
 test('full page remains readable without JavaScript', async ({ browser }) => {
   const context = await browser.newContext({
     javaScriptEnabled: false,
