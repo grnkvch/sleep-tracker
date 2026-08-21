@@ -1,0 +1,28 @@
+---
+import Container from '../common/Container.astro';
+
+interface Props {
+  copy: {
+    description: string;
+    privacy: string;
+    terms: string;
+    boundaries: string;
+    copyright: string;
+  };
+}
+
+const { copy } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <Container class="site-footer__inner">
+    <p>{copy.description}</p>
+    <nav aria-label={copy.description}>
+      <a href={`${base}privacy/`}>{copy.privacy}</a>
+      <a href={`${base}terms/`}>{copy.terms}</a>
+      <a href={`${base}boundaries/`}>{copy.boundaries}</a>
+    </nav>
+    <p class="site-footer__copyright">{copy.copyright}</p>
+  </Container>
+</footer>

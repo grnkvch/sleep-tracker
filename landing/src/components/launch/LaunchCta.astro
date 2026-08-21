@@ -1,0 +1,39 @@
+---
+import Button from '../common/Button.astro';
+import type { LaunchConfig } from '../../config/content-schema';
+import { resolveCta } from '../../lib/launch';
+
+interface Props {
+  launch: LaunchConfig;
+  mode: 'preview' | 'release';
+  placement: 'hero' | 'offer';
+  choiceLabel?: string;
+}
+
+const { launch, mode, placement, choiceLabel } = Astro.props;
+const items = resolveCta(launch, mode);
+---
+
+<div
+  class:list={['launch-cta', items.length > 1 && 'launch-cta--choice']}
+  data-profile={launch.profile}
+>
+  {items.length > 1 && choiceLabel && <p class="launch-cta__choice">{choiceLabel}</p>}
+  <div class="launch-cta__buttons">
+    {
+      items.map((item, index) => (
+        <div class="launch-cta__item">
+          <Button
+            href={item.href}
+            variant={index === 0 ? 'primary' : 'secondary'}
+            placement={placement}
+            channel={item.channel}
+          >
+            {item.resolvedLabel}
+          </Button>
+          <small>{item.description}</small>
+        </div>
+      ))
+    }
+  </div>
+</div>

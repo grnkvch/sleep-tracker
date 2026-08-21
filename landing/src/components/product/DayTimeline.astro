@@ -1,0 +1,35 @@
+---
+interface Item {
+  label: string;
+  detail: string;
+  state: 'calm' | 'changed' | 'question';
+}
+
+interface Props {
+  items: Item[];
+  summary: string;
+}
+
+const { items, summary } = Astro.props;
+---
+
+<figure class="day-timeline" aria-labelledby="day-timeline-caption">
+  <figcaption id="day-timeline-caption">{summary}</figcaption>
+  <ol>
+    {
+      items.map((item) => (
+        <li class={`day-timeline__item day-timeline__item--${item.state}`}>
+          <>
+            <span />
+            <div>
+              <>
+                <strong>{item.label}</strong>
+                <p>{item.detail}</p>
+              </>
+            </div>
+          </>
+        </li>
+      ))
+    }
+  </ol>
+</figure>

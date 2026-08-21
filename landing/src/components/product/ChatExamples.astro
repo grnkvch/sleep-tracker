@@ -1,0 +1,26 @@
+---
+interface Props {
+  questions: string[];
+  response: string;
+  labels: { parent: string; assistant: string; summary: string };
+}
+
+const { questions, response, labels } = Astro.props;
+---
+
+<figure class="chat-examples" aria-labelledby="chat-example-caption">
+  <figcaption id="chat-example-caption">{labels.summary}</figcaption>
+  <div class="chat-examples__questions">
+    {
+      questions.map((question) => (
+        <blockquote>
+          <>
+            <small>{labels.parent}</small>
+            <p>{question}</p>
+          </>
+        </blockquote>
+      ))
+    }
+  </div>
+  <div class="chat-examples__answer"><small>{labels.assistant}</small><p>{response}</p></div>
+</figure>

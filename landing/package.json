@@ -1,0 +1,57 @@
+{
+  "name": "sleep-tracker-landing",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@11.19.0",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=11.0.0"
+  },
+  "scripts": {
+    "dev": "node scripts/run-profile.mjs dev hybrid",
+    "dev:telegram": "node scripts/run-profile.mjs dev telegram",
+    "dev:pwa": "node scripts/run-profile.mjs dev pwa",
+    "dev:hybrid": "node scripts/run-profile.mjs dev hybrid",
+    "build": "node scripts/run-profile.mjs build hybrid",
+    "build:telegram": "node scripts/run-profile.mjs build telegram",
+    "build:pwa": "node scripts/run-profile.mjs build pwa",
+    "build:hybrid": "node scripts/run-profile.mjs build hybrid",
+    "build:all": "node scripts/build-all.mjs",
+    "preview:telegram": "node scripts/run-profile.mjs preview telegram",
+    "preview:pwa": "node scripts/run-profile.mjs preview pwa",
+    "preview:hybrid": "node scripts/run-profile.mjs preview hybrid",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "typecheck": "node scripts/astro-command.mjs check",
+    "audit:copy": "node scripts/audit-copy.mjs",
+    "audit:content": "node scripts/audit-content.mjs",
+    "audit:proportions": "playwright test tests/proportions",
+    "audit:release": "node scripts/audit-release.mjs",
+    "audit:performance": "node scripts/audit-performance.mjs",
+    "test:e2e": "playwright test tests/e2e tests/seo",
+    "test:a11y": "playwright test tests/accessibility",
+    "test:visual": "playwright test tests/visual",
+    "test:performance": "pnpm audit:performance",
+    "test": "playwright test",
+    "validate": "pnpm format:check && pnpm typecheck && pnpm audit:copy && pnpm build:all && pnpm audit:content && pnpm test:e2e && pnpm test:a11y && pnpm audit:proportions && pnpm test:visual && pnpm audit:performance",
+    "package:release": "node scripts/package-release.mjs"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "7.0.7",
+    "astro": "7.2.4",
+    "yaml": "2.9.0",
+    "zod": "4.4.3"
+  },
+  "devDependencies": {
+    "@astrojs/check": "0.9.10",
+    "@axe-core/playwright": "4.13.0",
+    "@lhci/cli": "0.15.1",
+    "@playwright/test": "1.62.1",
+    "@types/node": "26.2.0",
+    "fflate": "0.8.3",
+    "prettier": "3.9.6",
+    "prettier-plugin-astro": "0.14.1",
+    "typescript": "6.0.3"
+  }
+}

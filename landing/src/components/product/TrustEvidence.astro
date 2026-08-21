@@ -1,0 +1,20 @@
+---
+interface Props {
+  enabled: boolean;
+  title?: string;
+  description?: string | null;
+}
+
+const { enabled, title, description } = Astro.props;
+---
+
+{
+  enabled && title && description && (
+    <aside class="trust-evidence">
+      <>
+        <h3>{title}</h3>
+        <p>{description}</p>
+      </>
+    </aside>
+  )
+}

@@ -1,0 +1,15 @@
+---
+import LaunchCta from './LaunchCta.astro';
+import type { LaunchConfig } from '../../config/content-schema';
+
+interface Props {
+  launch: LaunchConfig;
+  mode: 'preview' | 'release';
+  placement: 'hero' | 'offer';
+  choiceLabel?: string;
+}
+
+const props = Astro.props;
+---
+
+<LaunchCta {...props} />

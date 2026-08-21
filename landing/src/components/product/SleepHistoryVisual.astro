@@ -1,0 +1,35 @@
+---
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  demo: DemoContent;
+  summary: string;
+}
+
+const { demo, summary } = Astro.props;
+---
+
+<figure class="sleep-history" aria-labelledby="sleep-history-caption">
+  <figcaption id="sleep-history-caption">{summary}</figcaption>
+  <div class="sleep-history__scale" aria-hidden="true">
+    <span>09:00</span><span>13:00</span><span>17:00</span>
+  </div>
+  <ol>
+    {
+      demo.historyDays.map((row, index) => (
+        <li class:list={[index === demo.historyDays.length - 1 && 'is-today']}>
+          <strong>{row.day}</strong>
+          <div class="sleep-history__track" aria-label={`${row.day}: ${row.intervals.join(', ')}`}>
+            {row.intervals.map((interval, intervalIndex) => (
+              <span
+                style={`--start:${8 + intervalIndex * 30}%;--width:${17 - intervalIndex * 2}%`}
+                title={interval}
+              />
+            ))}
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+  <p>{demo.historyCaption}</p>
+</figure>

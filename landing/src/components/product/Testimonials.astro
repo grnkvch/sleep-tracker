@@ -1,0 +1,27 @@
+---
+interface Entry {
+  quote: string;
+  author: string;
+}
+interface Props {
+  enabled: boolean;
+  title?: string;
+  entries?: Entry[];
+}
+
+const { enabled, title, entries = [] } = Astro.props;
+---
+
+{
+  enabled && entries.length > 0 && (
+    <aside class="testimonials">
+      <h3>{title}</h3>
+      {entries.map((entry) => (
+        <blockquote>
+          <p>{entry.quote}</p>
+          <cite>{entry.author}</cite>
+        </blockquote>
+      ))}
+    </aside>
+  )
+}

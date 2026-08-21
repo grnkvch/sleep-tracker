@@ -1,0 +1,280 @@
+---
+locale: ru
+contentVersion: v4
+releaseStatus: draft
+legalStatus: draft
+seoTitle: 'Помощник по детскому сну — что делать после каждого сна'
+seoDescription: 'Отмечайте сны малыша и получайте понятный ближайший ориентир с коротким объяснением, если день пошёл не по плану.'
+---
+
+import HeroSection from '../../components/sections/HeroSection.astro';
+import PainSection from '../../components/sections/PainSection.astro';
+import BenefitsSection from '../../components/sections/BenefitsSection.astro';
+import ProductSection from '../../components/sections/ProductSection.astro';
+import OfferSection from '../../components/sections/OfferSection.astro';
+import SectionHeading from '../../components/common/SectionHeading.astro';
+import LaunchCta from '../../components/launch/LaunchCta.astro';
+import TelegramHeroVisual from '../../components/launch/TelegramHeroVisual.astro';
+import PwaHeroVisual from '../../components/launch/PwaHeroVisual.astro';
+import HybridHeroVisual from '../../components/launch/HybridHeroVisual.astro';
+import DayTimeline from '../../components/product/DayTimeline.astro';
+import BenefitCard from '../../components/product/BenefitCard.astro';
+import ProductFlow from '../../components/product/ProductFlow.astro';
+import RecommendationCard from '../../components/product/RecommendationCard.astro';
+import DayUpdateVisual from '../../components/product/DayUpdateVisual.astro';
+import ChatExamples from '../../components/product/ChatExamples.astro';
+import SleepHistoryVisual from '../../components/product/SleepHistoryVisual.astro';
+import ExplanationPanel from '../../components/product/ExplanationPanel.astro';
+import TrustEvidence from '../../components/product/TrustEvidence.astro';
+import Testimonials from '../../components/product/Testimonials.astro';
+import OnboardingSteps from '../../components/product/OnboardingSteps.astro';
+import BoundaryNote from '../../components/product/BoundaryNote.astro';
+import { demo, verifiedFacts as facts } from '../../lib/content';
+import { getLaunchConfig } from '../../lib/launch';
+import { getFeatures } from '../../config/features';
+
+export const launch = getLaunchConfig(__LAUNCH_PROFILE__);
+export const mode = __BUILD_MODE__;
+export const features = getFeatures(facts);
+
+<HeroSection>
+  <div className="hero-copy">
+    <span className="channel-badge">{launch.channelBadge}</span>
+
+    # Малыш плохо спит — подскажем, что делать шаг за шагом
+
+    <p className="hero-subtitle"><strong>Онлайн-помощник для родителей, который учитывает режим и каждый сон малыша.</strong></p>
+
+    <p className="hero-lead">Отмечайте, как малыш спит сегодня, — и получайте понятный ориентир, что делать дальше, если день снова пошёл не по плану.</p>
+
+    <LaunchCta launch={launch} mode={mode} placement="hero" choiceLabel={launch.choiceLabel} />
+
+    <p className="cta-note">Ответьте на несколько коротких вопросов и добавьте последние сны малыша. Сначала покажем первую полезную подсказку — дальше решите, подходит ли вам такой формат.</p>
+
+  </div>
+
+{launch.heroVariant === 'chat' && <TelegramHeroVisual demo={demo} labels={{ assistant: 'Помощник', entry: 'Малыш проснулся в 14:10. Сон — 40 минут.' }} />}
+{launch.heroVariant === 'app' && <PwaHeroVisual demo={demo} labels={{ screen: 'Сегодня' }} />}
+{launch.heroVariant === 'neutral' && <HybridHeroVisual demo={demo} labels={{ telegram: 'Telegram', web: 'Веб' }} />}
+
+</HeroSection>
+
+<PainSection>
+  <div className="pain-copy prose">
+    <SectionHeading eyebrow="Когда день меняется">
+      ## Малыш поспал не так, как ожидалось — и снова непонятно, что делать дальше
+    </SectionHeading>
+
+    Поспал полчаса вместо часа. Уснул позже. Проснулся слишком рано. И обычный план на день уже не очень помогает.
+
+    Когда теперь укладывать снова? Сдвигать ли ночной сон? Что делать, если усталость появится раньше? И нужно ли вообще что-то менять?
+
+    Советов про детский сон много: нормы, окна бодрствования, таблицы, посты, курсы. Но в момент, когда малыш только что проснулся, чаще нужен не ещё один материал про сон, а ответ на простой вопрос: **что делать дальше сегодня?**
+
+    Особенно когда вы и так не выспались и меньше всего хочется снова всё пересчитывать самостоятельно.
+
+    <blockquote className="pain-quote">«Всё было понятно утром. А теперь — на что ориентироваться?»</blockquote>
+
+    **Поэтому помощник отталкивается не от идеального расписания, а от того, как малыш действительно спит сегодня.**
+
+  </div>
+
+  <DayTimeline
+    summary="Как привычный план меняется после короткого сна"
+    items={[
+      { label: 'План утром', detail: 'Понятный ритм на день', state: 'calm' },
+      { label: 'Сон короче', detail: 'Малыш проснулся раньше', state: 'changed' },
+      { label: 'Старый ориентир', detail: 'Уже может не подходить', state: 'changed' },
+      { label: 'Что дальше?', detail: 'Нужен ближайший шаг, а не новая таблица', state: 'question' }
+    ]}
+  />
+</PainSection>
+
+<BenefitsSection>
+  <SectionHeading eyebrow="Меньше расчётов — больше ясности">
+    ## Не нужно после каждого сна заново решать, что делать дальше
+
+    <p>Вы отмечаете, что произошло, а помощник учитывает сегодняшний день и то, что уже знает о сне малыша. Вместо нового поиска по таблицам и чатам у вас остаётся ближайший понятный ориентир.</p>
+
+  </SectionHeading>
+
+<div className="benefits-grid">
+  <BenefitCard
+    icon="compass"
+    title="После сна понятно, на что смотреть дальше"
+    text="Не обязательно заранее расписывать весь день по минутам. Достаточно понимать ближайший шаг: когда примерно ждать следующую усталость, на что обратить внимание и что можно сделать сейчас."
+    example="Не весь день сразу — один ближайший ориентир."
+  />
+  <BenefitCard
+    icon="adapt"
+    title="День изменился — ориентир меняется вместе с ним"
+    text="Короткий сон, раннее пробуждение или позднее укладывание не заставляют вас вручную пересобирать весь режим. Следующая подсказка учитывает то, как день сложился на самом деле."
+    example="Новая отметка обновляет следующий шаг."
+  />
+  <BenefitCard
+    icon="explain"
+    title="Понятно не только что делать, но и почему"
+    text="Если подсказка изменилась, можно посмотреть короткое объяснение: что на неё повлияло и почему прежний ориентир уже может не подходить."
+  />
+  <BenefitCard
+    icon="variation"
+    title="Не каждый необычный сон нужно исправлять"
+    text="У малышей бывают разные дни. Помощник нужен не для того, чтобы превращать каждое отклонение в проблему, а чтобы помочь понять, когда действительно стоит что-то менять, а когда можно просто наблюдать дальше."
+  />
+</div>
+
+  <div className="benefits-summary">
+    <p>Не идеальный график на бумаге.</p>
+    <strong>Ориентир для того дня, который получается сейчас.</strong>
+  </div>
+</BenefitsSection>
+
+<ProductSection>
+  <SectionHeading eyebrow="Один понятный сценарий">
+    ## Как это работает в обычный день
+
+    <p>Один раз расскажите немного о малыше, а дальше просто отмечайте основные сны и пробуждения. Помощник собирает их в одну историю и после важных изменений подсказывает, на что ориентироваться дальше.</p>
+
+  </SectionHeading>
+
+<ProductFlow
+  summary="Рассказали о малыше, отметили сон и получили следующий ориентир"
+  steps={[
+    {
+      number: '1',
+      title: 'Сначала — несколько вопросов о малыше',
+      text: 'Как он обычно спит, как проходит день и что сейчас беспокоит вас больше всего. В начале нужны только сведения, без которых нельзя понять текущую ситуацию; остальное можно уточнить позже.'
+    },
+    {
+      number: '2',
+      title: 'После сна — короткая отметка',
+      text: 'Малыш уснул, проснулся или поспал меньше обычного — отметьте это за несколько секунд. Не нужно вести подробный дневник каждой минуты.'
+    },
+    {
+      number: '3',
+      title: 'Помощник пересматривает ближайший ориентир',
+      text: 'Он учитывает последний сон вместе с сегодняшним днём и предыдущей историей, а затем показывает, что имеет смысл делать дальше.'
+    }
+  ]}
+/>
+
+  <div className="central-demo">
+    <div className="central-demo__copy">
+      <span className="eyebrow">Конкретный результат</span>
+      ### Ближайший шаг — сразу после отметки
+
+      <p>Не просто запись в дневнике, а обновлённый ориентир: когда начать наблюдать за усталостью, когда готовиться ко сну и почему рекомендация изменилась.</p>
+    </div>
+    <RecommendationCard demo={demo} />
+
+  </div>
+
+  <div className="product-module product-module--update">
+    <div className="product-module__copy prose">
+      ### Если следующий сон снова всё изменит — ничего страшного
+
+      Не нужно пытаться любой ценой вернуться к плану, который был утром. Отметьте новый сон — и помощник снова пересмотрит ближайший ориентир по тому дню, который получается сейчас.
+    </div>
+    <DayUpdateVisual demo={demo} summary="Как ближайший ориентир меняется после новой отметки" />
+
+  </div>
+
+  <div className="product-module product-module--chat">
+    <div className="product-module__copy prose">
+      ### Можно спросить своими словами
+
+      Не нужно переводить вопрос на язык таблиц и терминов. Помощник уже видит отмеченные сны и может отвечать с учётом того, что происходило сегодня.
+    </div>
+    <ChatExamples
+      labels={{ parent: 'Родитель', assistant: 'Помощник', summary: 'Примеры вопросов своими словами' }}
+      questions={[
+        'Он почти не спал днём — что теперь с ночью?',
+        'Сегодня всё съехало. Стоит возвращать старый режим?',
+        'Малыш проснулся раньше обычного. Это вообще проблема?'
+      ]}
+      response="По сегодняшним отметкам день действительно получился короче. Давайте сначала посмотрим на ближайшее укладывание — возвращать весь режим прямо сейчас не обязательно."
+    />
+
+  </div>
+
+  <div className="product-module product-module--history">
+    <div className="product-module__copy prose">
+      ### История нужна не ради красивой статистики
+
+      Предыдущие записи помогают видеть не отдельный сон в вакууме, а привычный ритм малыша и изменения от дня к дню. Поэтому после каждого вопроса не приходится заново рассказывать всю историю.
+    </div>
+    <SleepHistoryVisual demo={demo} summary="История сна за четыре дня" />
+
+  </div>
+
+  <div className="product-module product-module--explanation">
+    <div className="product-module__copy prose">
+      ### Можно открыть объяснение, а не просто следовать подсказке
+
+      Если хочется разобраться, помощник покажет, что именно повлияло на следующий ориентир. Со временем так легче замечать закономерности самостоятельно — например, что меняется после короткого сна и когда необычный день действительно требует корректировки.
+    </div>
+    <ExplanationPanel
+      title="Почему так"
+      summary="Что учитывается в объяснении подсказки"
+      items={[
+        { title: 'Последний сон', text: 'Когда закончился и сколько длился.' },
+        { title: 'Ход текущего дня', text: 'Как складывались предыдущие сны и пробуждения.' },
+        { title: 'Предыдущая история', text: 'Что обычно повторяется в ритме малыша.' }
+      ]}
+    />
+
+  </div>
+
+  <div className="product-principle prose">
+    ### Без режима «по минутам»
+
+    Подсказки остаются ориентирами, а не командами. Можно учитывать состояние малыша, признаки усталости и то, как проходит ваша реальная жизнь, а не пытаться подогнать её под один идеальный график.
+
+  </div>
+
+  <TrustEvidence enabled={features.methodology} title="Основания рекомендаций" description={facts.methodology.description} />
+  <Testimonials enabled={features.testimonials} title="Истории родителей" entries={facts.testimonials.entries} />
+</ProductSection>
+
+<OfferSection>
+  <div className="offer-intro prose">
+    <SectionHeading eyebrow="Первая ценность до решения о продолжении">
+      ## Начните с сегодняшнего дня, а не с идеального режима
+    </SectionHeading>
+
+    Не нужно сначала изучать большую методику или неделю собирать идеальный дневник сна.
+
+    Расскажите самое важное о малыше, добавьте последние сны — и посмотрите первую подсказку по тому дню, который складывается у вас сейчас.
+
+  </div>
+
+  <div className="offer-steps">
+    ### Что произойдёт после нажатия
+
+    <OnboardingSteps
+      summary="Пять шагов от коротких вопросов до обновлённой подсказки"
+      steps={[
+        'Ответите на несколько коротких вопросов о малыше и его сне.',
+        'Добавите последние сны и пробуждения.',
+        'Получите ближайший ориентир и короткое объяснение, почему он такой.',
+        'После следующего сна сможете увидеть, как подсказка меняется вместе с днём.',
+        'Сначала попробуете помощника на своей ситуации — о продолжении можно решить потом.'
+      ]}
+    />
+
+  </div>
+
+<div className="offer-action">
+  <LaunchCta launch={launch} mode={mode} placement="offer" choiceLabel={launch.choiceLabel} />
+  <p>
+    Не нужно сразу разобраться во всём про детский сон. Начните с одного вопроса:{' '}
+    <strong>как малыш спал сегодня?</strong>
+  </p>
+</div>
+
+  <BoundaryNote
+    title="Помощник даёт ориентиры, а не медицинские заключения"
+    text="Если состояние или сон малыша вызывает тревогу, решение лучше обсудить с врачом или профильным специалистом."
+    linkLabel="Подробнее о границах продукта"
+  />
+</OfferSection>

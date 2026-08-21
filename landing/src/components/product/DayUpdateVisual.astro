@@ -1,0 +1,31 @@
+---
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  demo: DemoContent;
+  summary: string;
+}
+
+const { demo, summary } = Astro.props;
+const states = [
+  [demo.beforeLabel, demo.beforeValue],
+  [demo.eventLabel, demo.eventValue],
+  [demo.afterLabel, demo.afterValue]
+];
+---
+
+<figure class="day-update" aria-labelledby="day-update-caption">
+  <figcaption id="day-update-caption">{summary}</figcaption>
+  <ol>
+    {
+      states.map(([label, value]) => (
+        <li>
+          <>
+            <span>{label}</span>
+            <strong>{value}</strong>
+          </>
+        </li>
+      ))
+    }
+  </ol>
+</figure>

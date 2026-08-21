@@ -1,0 +1,16 @@
+---
+interface Props {
+  title: string;
+  text: string;
+  linkLabel: string;
+}
+
+const { title, text, linkLabel } = Astro.props;
+const boundariesUrl = `${import.meta.env.BASE_URL}boundaries/`;
+---
+
+<aside class="boundary-note">
+  <div aria-hidden="true">i</div><div>
+    <h3>{title}</h3><p>{text}</p><a href={boundariesUrl}>{linkLabel}</a>
+  </div>
+</aside>

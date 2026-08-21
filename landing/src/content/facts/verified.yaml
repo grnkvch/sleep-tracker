@@ -1,0 +1,27 @@
+methodology:
+  enabled: false
+  status: unverified
+  description: null
+  sources: []
+expertReview:
+  enabled: false
+  status: unverified
+  expertName: null
+  qualification: null
+  consentConfirmed: false
+pricing:
+  enabled: false
+  status: unverified
+  monthly: null
+  yearly: null
+  currency: null
+trial:
+  enabled: false
+  status: unverified
+  durationDays: null
+  cardRequired: null
+  autoRenewal: null
+testimonials:
+  enabled: false
+  status: unverified
+  entries: []

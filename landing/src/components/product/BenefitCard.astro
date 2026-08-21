@@ -1,0 +1,61 @@
+---
+interface Props {
+  icon: 'compass' | 'adapt' | 'explain' | 'variation';
+  title: string;
+  text: string;
+  example?: string;
+}
+
+const { icon, title, text, example } = Astro.props;
+---
+
+<article class="benefit-card">
+  <div class="benefit-card__icon" aria-hidden="true">
+    {
+      icon === 'compass' && (
+        <svg viewBox="0 0 48 48">
+          <>
+            <circle cx="24" cy="24" r="16" />
+            <path d="m29 18-3 9-9 3 3-9 9-3Z" />
+          </>
+        </svg>
+      )
+    }
+    {
+      icon === 'adapt' && (
+        <svg viewBox="0 0 48 48">
+          <>
+            <path d="M12 17h18a7 7 0 0 1 7 7v0a7 7 0 0 1-7 7H18" />
+            <path d="m17 26-5 5 5 5" />
+            <circle cx="12" cy="17" r="3" />
+          </>
+        </svg>
+      )
+    }
+    {
+      icon === 'explain' && (
+        <svg viewBox="0 0 48 48">
+          <>
+            <path d="M14 13h20a5 5 0 0 1 5 5v11a5 5 0 0 1-5 5H24l-8 6v-6h-2a5 5 0 0 1-5-5V18a5 5 0 0 1 5-5Z" />
+            <path d="M19 22h10M19 27h7" />
+          </>
+        </svg>
+      )
+    }
+    {
+      icon === 'variation' && (
+        <svg viewBox="0 0 48 48">
+          <>
+            <path d="M10 28c5-11 12-16 21-16" />
+            <path d="M27 8h6v6" />
+            <path d="M10 34c9 3 18 1 27-8" />
+            <circle cx="11" cy="28" r="3" />
+          </>
+        </svg>
+      )
+    }
+  </div>
+  <h3>{title}</h3>
+  <p>{text}</p>
+  {example && <p class="benefit-card__example">{example}</p>}
+</article>

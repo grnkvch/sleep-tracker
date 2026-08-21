@@ -1,0 +1,56 @@
+:root {
+  color-scheme: light;
+  --color-bg: #fbfaf7;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f2f4ef;
+  --color-text: #26312f;
+  --color-text-muted: #61706c;
+  --color-border: #dce3de;
+  --color-primary: #456f69;
+  --color-primary-hover: #365c57;
+  --color-primary-soft: #e4efec;
+  --color-accent-warm: #efd9bf;
+  --color-success-soft: #e8f2e8;
+  --color-focus: #1f5f99;
+  --color-pain: #8a6652;
+  --shadow-key: 0 28px 80px rgba(38, 49, 47, 0.11), 0 8px 24px rgba(38, 49, 47, 0.06);
+  --font-sans:
+    ui-rounded, 'SF Pro Rounded', 'SF Pro Display', Inter, system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --container: 1220px;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --radius-sm: 0.9rem;
+  --radius-md: 1.4rem;
+  --radius-lg: 1.75rem;
+  --space-1: 0.5rem;
+  --space-2: 0.75rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-7: 4.5rem;
+  --space-8: 6rem;
+  --section-unit: 10rem;
+  --section-hero-pad-block: clamp(3rem, 6vw, 5.5rem);
+  --section-pain-pad-block: clamp(5rem, 9vw, 8rem);
+  --section-benefits-pad-block: clamp(5.5rem, 10vw, 9rem);
+  --section-product-pad-block: clamp(6rem, 11vw, 10rem);
+  --section-offer-pad-block: clamp(5.5rem, 10vw, 9rem);
+}
+
+@media (max-width: 899px) {
+  :root {
+    --section-unit: 12rem;
+  }
+}
+
+@media (max-width: 599px) {
+  :root {
+    --section-unit: 17rem;
+    --section-hero-pad-block: 3.5rem;
+    --section-pain-pad-block: 5rem;
+    --section-benefits-pad-block: 5rem;
+    --section-product-pad-block: 5.5rem;
+    --section-offer-pad-block: 5rem;
+  }
+}

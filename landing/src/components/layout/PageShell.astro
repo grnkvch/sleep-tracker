@@ -1,0 +1,33 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import SkipLink from '../common/SkipLink.astro';
+import type { LaunchConfig } from '../../config/content-schema';
+
+interface Props {
+  launch: LaunchConfig;
+  shellCopy: {
+    skipLink: string;
+    header: {
+      logoLabel: string;
+      benefitsLink: string;
+      productLink: string;
+      cta: string;
+    };
+    footer: {
+      description: string;
+      privacy: string;
+      terms: string;
+      boundaries: string;
+      copyright: string;
+    };
+  };
+}
+
+const { launch, shellCopy } = Astro.props;
+---
+
+<SkipLink label={shellCopy.skipLink} />
+<Header copy={shellCopy.header} launch={launch} />
+<slot />
+<Footer copy={shellCopy.footer} />

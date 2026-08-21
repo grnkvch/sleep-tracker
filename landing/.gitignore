@@ -1,0 +1,10 @@
+node_modules/
+.astro/
+dist/
+release/*.zip
+release/manifest.json
+playwright-report/
+test-results/
+docs/reports/*.json
+docs/reports/screenshots/
+!docs/reports/.gitkeep

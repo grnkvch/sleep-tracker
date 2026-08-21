@@ -1,0 +1,20 @@
+profile: hybrid
+channelBadge: 'Telegram или веб'
+heroVariant: neutral
+choiceLabel: 'Выберите, где удобнее начать'
+primary:
+  channel: telegram
+  label: 'Начать в Telegram'
+  previewLabel: 'Посмотреть, как это работает'
+  description: 'Чат откроется в Telegram'
+  url: null
+  fallbackUrl: '#product-demo'
+secondary:
+  channel: pwa
+  label: 'Открыть веб-приложение'
+  previewLabel: 'Посмотреть, как это работает'
+  description: 'Откроется в браузере'
+  url: null
+  fallbackUrl: '#product-demo'
+qrEnabled: false
+seoSuffix: null

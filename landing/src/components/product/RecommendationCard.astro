@@ -1,0 +1,45 @@
+---
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  demo: DemoContent;
+  compact?: boolean;
+  actionLabels?: string[];
+}
+
+const { demo, compact = false, actionLabels = [] } = Astro.props;
+---
+
+<div class:list={['recommendation-card', compact && 'recommendation-card--compact']}>
+  <div class="recommendation-card__eyebrow">
+    <span>{demo.todayLabel}</span><small>{compact ? demo.caption : demo.interfaceCaption}</small>
+  </div>
+  <dl class="sleep-facts">
+    <div>
+      <dt>{demo.lastWakeLabel}</dt>
+      <dd>{demo.lastWakeTime}</dd>
+    </div>
+    <div>
+      <dt>{demo.lastSleepLabel}</dt>
+      <dd>{demo.lastSleepDuration}</dd>
+    </div>
+  </dl>
+  <div class="recommendation-card__result">
+    <span>{demo.nextSleepLabel}</span>
+    <strong>{demo.nextSleepWindow}</strong>
+    <p>{demo.preparationLabel} <b>{demo.preparationTime}</b>.</p>
+  </div>
+  <details class="recommendation-card__reason" open={!compact}>
+    <summary>{demo.reasonTitle}</summary>
+    <p>{compact ? demo.reasonText : demo.productReasonText}</p>
+  </details>
+  {
+    actionLabels.length > 0 && (
+      <div class="recommendation-card__actions">
+        {actionLabels.map((label) => (
+          <span>{label}</span>
+        ))}
+      </div>
+    )
+  }
+</div>

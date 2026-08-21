@@ -1,0 +1,13 @@
+profile: pwa
+channelBadge: 'Веб-приложение'
+heroVariant: app
+primary:
+  channel: pwa
+  label: 'Открыть веб-приложение'
+  previewLabel: 'Посмотреть, как это работает'
+  description: 'Откроется веб-приложение'
+  url: null
+  fallbackUrl: '#product-demo'
+secondary: null
+qrEnabled: false
+seoSuffix: 'в веб-приложении'

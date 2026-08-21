@@ -1,0 +1,13 @@
+---
+import Container from '../common/Container.astro';
+
+interface Props {
+  id?: string;
+}
+
+const { id = 'hero' } = Astro.props;
+---
+
+<section id={id} class="macro-section macro-section--hero" data-macro="hero">
+  <Container class="hero-layout"><slot /></Container>
+</section>

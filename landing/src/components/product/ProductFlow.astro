@@ -1,0 +1,33 @@
+---
+interface Step {
+  number: string;
+  title: string;
+  text: string;
+}
+
+interface Props {
+  steps: Step[];
+  summary: string;
+}
+
+const { steps, summary } = Astro.props;
+---
+
+<figure class="product-flow" aria-labelledby="product-flow-caption">
+  <figcaption id="product-flow-caption">{summary}</figcaption>
+  <ol>
+    {
+      steps.map((step) => (
+        <li>
+          <span class="product-flow__number">{step.number}</span>
+          <div>
+            <>
+              <h3>{step.title}</h3>
+              <p>{step.text}</p>
+            </>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</figure>

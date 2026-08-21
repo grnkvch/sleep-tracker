@@ -1,0 +1,32 @@
+---
+interface Item {
+  title: string;
+  text: string;
+}
+interface Props {
+  title: string;
+  summary: string;
+  items: Item[];
+}
+
+const { title, summary, items } = Astro.props;
+---
+
+<figure class="explanation-panel" aria-labelledby="explanation-panel-caption">
+  <figcaption id="explanation-panel-caption">{summary}</figcaption>
+  <div class="explanation-panel__header">
+    <span aria-hidden="true">?</span><h3>{title}</h3>
+  </div>
+  <ul>
+    {
+      items.map((item) => (
+        <li>
+          <>
+            <strong>{item.title}</strong>
+            <p>{item.text}</p>
+          </>
+        </li>
+      ))
+    }
+  </ul>
+</figure>

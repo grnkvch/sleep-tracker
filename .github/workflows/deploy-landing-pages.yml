@@ -1,0 +1,62 @@
+name: Deploy landing to GitHub Pages
+
+on:
+  push:
+    branches: [codex/landing]
+    paths:
+      - "landing/**"
+      - ".github/workflows/deploy-landing-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: landing
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.19.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: landing/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm audit:copy
+      - run: pnpm build:all
+        env:
+          BUILD_MODE: preview
+          SITE_URL: https://grnkvch.github.io
+          BASE_PATH: /sleep-tracker
+      - run: pnpm audit:content
+      - run: pnpm audit:performance
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: landing/dist/hybrid
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

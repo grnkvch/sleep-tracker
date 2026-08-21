@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageShell from '../components/layout/PageShell.astro';
+import LandingContent, { frontmatter } from '../content/landing/ru.mdx';
+import { shellCopy } from '../lib/content';
+import { getLaunchConfig } from '../lib/launch';
+
+const launch = getLaunchConfig(__LAUNCH_PROFILE__);
+---
+
+<BaseLayout
+  title={frontmatter.seoTitle}
+  description={frontmatter.seoDescription}
+  profile={launch.profile}
+  mode={__BUILD_MODE__}
+>
+  <PageShell launch={launch} shellCopy={shellCopy}>
+    <main id="landing-content" data-landing-content>
+      <LandingContent />
+    </main>
+  </PageShell>
+</BaseLayout>

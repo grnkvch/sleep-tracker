@@ -1,0 +1,22 @@
+---
+import RecommendationCard from '../product/RecommendationCard.astro';
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  demo: DemoContent;
+  labels: { assistant: string; entry: string };
+}
+
+const { demo, labels } = Astro.props;
+---
+
+<figure class="hero-visual hero-visual--chat" aria-labelledby="hero-visual-caption">
+  <figcaption id="hero-visual-caption">{demo.caption}</figcaption>
+  <div class="chat-shell">
+    <div class="chat-shell__top"><span class="status-dot"></span>{labels.assistant}</div>
+    <p class="chat-bubble chat-bubble--user">{labels.entry}</p>
+    <div class="chat-bubble chat-bubble--assistant">
+      <RecommendationCard demo={demo} compact />
+    </div>
+  </div>
+</figure>

@@ -1,0 +1,13 @@
+profile: telegram
+channelBadge: 'Telegram'
+heroVariant: chat
+primary:
+  channel: telegram
+  label: 'Открыть помощника в Telegram'
+  previewLabel: 'Посмотреть, как это работает'
+  description: 'Откроется чат в Telegram'
+  url: null
+  fallbackUrl: '#product-demo'
+secondary: null
+qrEnabled: false
+seoSuffix: 'в Telegram'

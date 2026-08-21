@@ -1,0 +1,8 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import Content, { frontmatter } from '../content/legal/terms.mdx';
+---
+
+<LegalLayout title={frontmatter.title} description={frontmatter.description} backLabel="На главную">
+  <Content />
+</LegalLayout>

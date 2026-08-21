@@ -1,0 +1,19 @@
+---
+import RecommendationCard from '../product/RecommendationCard.astro';
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  demo: DemoContent;
+  labels: { telegram: string; web: string };
+}
+
+const { demo, labels } = Astro.props;
+---
+
+<figure class="hero-visual hero-visual--neutral" aria-labelledby="hero-neutral-caption">
+  <figcaption id="hero-neutral-caption">{demo.caption}</figcaption>
+  <div class="channel-chips" aria-hidden="true">
+    <span>{labels.telegram}</span><span>{labels.web}</span>
+  </div>
+  <RecommendationCard demo={demo} compact />
+</figure>

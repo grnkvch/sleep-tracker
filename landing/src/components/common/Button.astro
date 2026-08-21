@@ -1,0 +1,20 @@
+---
+interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'quiet';
+  class?: string;
+  channel?: string;
+  placement?: string;
+}
+
+const { href, variant = 'primary', class: className = '', channel, placement } = Astro.props;
+---
+
+<a
+  class:list={['button', `button--${variant}`, className]}
+  href={href}
+  data-channel={channel}
+  data-placement={placement}
+>
+  <slot />
+</a>

@@ -1,0 +1,58 @@
+---
+import '../styles/tokens.css';
+import '../styles/global.css';
+import '../styles/utilities.css';
+import '../styles/sections.css';
+import type { LaunchProfile } from '../config/content-schema';
+
+interface Props {
+  title: string;
+  description: string;
+  profile: LaunchProfile;
+  mode: 'preview' | 'release';
+  canonicalPath?: string;
+}
+
+const { title, description, profile, mode, canonicalPath = '/' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const canonicalUrl = `${base}${canonicalPath === '/' ? '/' : canonicalPath}`;
+const canonical = mode === 'release' && Astro.site ? new URL(canonicalUrl, Astro.site) : undefined;
+const socialOrigin = Astro.site ?? new URL('http://localhost:4321');
+const socialImage = new URL(`${base}/social/${profile}.svg`, socialOrigin);
+const favicon = `${base}/favicon.svg`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: title,
+  description,
+  ...(canonical ? { url: canonical.toString() } : {})
+};
+---
+
+<!doctype html>
+<html lang="ru" data-launch-profile={profile} data-build-mode={mode}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={mode === 'release' ? 'index, follow' : 'noindex, nofollow'} />
+    <meta name="theme-color" content="#fbfaf7" />
+    <title>{title}</title>
+    {canonical && <link rel="canonical" href={canonical} />}
+    <link rel="icon" type="image/svg+xml" href={favicon} />
+    <meta property="og:locale" content="ru_RU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:image" content={socialImage} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
