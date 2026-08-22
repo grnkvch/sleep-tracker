@@ -5,14 +5,14 @@ choiceLabel: 'Выберите, где удобнее начать'
 primary:
   channel: telegram
   label: 'Начать в Telegram'
-  previewLabel: 'Посмотреть, как это работает'
+  previewLabel: 'Начать в Telegram'
   description: 'Чат откроется в Telegram'
   url: null
   fallbackUrl: '#product-demo'
 secondary:
   channel: pwa
-  label: 'Открыть веб-приложение'
-  previewLabel: 'Посмотреть, как это работает'
+  label: 'Начать в браузере'
+  previewLabel: 'Начать в браузере'
   description: 'Откроется в браузере'
   url: null
   fallbackUrl: '#product-demo'
