@@ -85,7 +85,7 @@
 }
 
 .hero-copy h1 {
-  max-width: 15ch;
+  max-width: 22ch;
 }
 
 .hero-subtitle {
@@ -129,6 +129,18 @@
 
 .macro-section--hero .launch-cta__buttons {
   justify-content: center;
+}
+
+@media (min-width: 600px) {
+  .macro-section--hero .launch-cta,
+  .macro-section--hero .launch-cta__buttons {
+    width: max-content;
+    max-width: 100%;
+  }
+
+  .macro-section--hero .launch-cta__buttons {
+    flex-wrap: nowrap;
+  }
 }
 
 .launch-cta__item {
@@ -883,7 +895,8 @@
 }
 
 .product-step-screen {
-  min-height: 21rem;
+  height: 21rem;
+  align-self: end;
   overflow: hidden;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -1567,7 +1580,7 @@
   }
 
   .product-step-screen {
-    min-height: 19rem;
+    height: 19rem;
   }
 
   .product-flow li:not(:last-child)::after {
