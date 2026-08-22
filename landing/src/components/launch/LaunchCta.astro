@@ -18,7 +18,11 @@ const items = resolveCta(launch, mode);
   class:list={['launch-cta', items.length > 1 && 'launch-cta--choice']}
   data-profile={launch.profile}
 >
-  {items.length > 1 && choiceLabel && <p class="launch-cta__choice">{choiceLabel}</p>}
+  {
+    items.length > 1 && choiceLabel && placement === 'offer' && (
+      <h2 class="launch-cta__choice">{choiceLabel}</h2>
+    )
+  }
   <div class="launch-cta__buttons">
     {
       items.map((item, index) => (
@@ -31,7 +35,7 @@ const items = resolveCta(launch, mode);
           >
             {item.resolvedLabel}
           </Button>
-          <small>{item.description}</small>
+          {placement === 'offer' && <small>{item.description}</small>}
         </div>
       ))
     }

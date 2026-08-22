@@ -1,0 +1,90 @@
+---
+import type { DemoContent } from '../../config/content-schema';
+
+interface Props {
+  variant: 'profile' | 'sleep' | 'recommendation';
+  demo: DemoContent;
+}
+
+const { variant, demo } = Astro.props;
+---
+
+<div class:list={['product-step-screen', `product-step-screen--${variant}`]} aria-hidden="true">
+  <div class="product-step-screen__bar">
+    <span></span><strong
+      >{variant === 'profile' ? 'Профиль' : variant === 'sleep' ? 'Сон' : demo.todayLabel}</strong
+    ><span></span>
+  </div>
+
+  {
+    variant === 'profile' && (
+      <div class="product-step-screen__profile">
+        <div class="product-step-screen__progress">
+          <span />
+        </div>
+        <p>Несколько вопросов о малыше</p>
+        <div class="product-step-screen__field">
+          <>
+            <small>Как обычно проходит день?</small>
+            <b>Расскажите коротко</b>
+          </>
+        </div>
+        <div class="product-step-screen__chips">
+          <>
+            <span>Сны</span>
+            <span>Пробуждения</span>
+            <span>Что беспокоит</span>
+          </>
+        </div>
+      </div>
+    )
+  }
+
+  {
+    variant === 'sleep' && (
+      <div class="product-step-screen__sleep">
+        <p>Добавить последний сон</p>
+        <dl>
+          <div>
+            <>
+              <dt>Уснул</dt>
+              <dd>13:30</dd>
+            </>
+          </div>
+          <div>
+            <>
+              <dt>{demo.lastWakeLabel}</dt>
+              <dd>{demo.lastWakeTime}</dd>
+            </>
+          </div>
+        </dl>
+        <div class="product-step-screen__duration">
+          <>
+            <span>{demo.lastSleepLabel}</span>
+            <strong>{demo.lastSleepDuration}</strong>
+          </>
+        </div>
+        <span class="product-step-screen__button">Сохранить</span>
+      </div>
+    )
+  }
+
+  {
+    variant === 'recommendation' && (
+      <div class="product-step-screen__recommendation">
+        <small>{demo.caption}</small>
+        <span>{demo.nextSleepLabel}</span>
+        <strong>{demo.nextSleepWindow}</strong>
+        <p>
+          {demo.preparationLabel} — с <b>{demo.preparationTime}</b>
+        </p>
+        <div>
+          <>
+            <b>{demo.reasonTitle}</b>
+            <span>{demo.reasonText}</span>
+          </>
+        </div>
+      </div>
+    )
+  }
+</div>
