@@ -55,7 +55,8 @@ for (const profile of profiles) {
     pricing:
       text.includes('1 месяц') &&
       text.includes('990 ₽') &&
-      text.includes('1 год · выгоднее') &&
+      text.includes('1 год') &&
+      text.includes('Выгоднее') &&
       text.includes('5 990 ₽') &&
       text.includes('Около 500 ₽ в месяц') &&
       text.includes('Экономия 5 890 ₽'),

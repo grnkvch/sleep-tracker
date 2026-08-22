@@ -28,7 +28,7 @@ import ExplanationPanel from '../../components/product/ExplanationPanel.astro';
 import TrustEvidence from '../../components/product/TrustEvidence.astro';
 import Testimonials from '../../components/product/Testimonials.astro';
 import OnboardingSteps from '../../components/product/OnboardingSteps.astro';
-import BoundaryNote from '../../components/product/BoundaryNote.astro';
+import PricingPlans from '../../components/product/PricingPlans.astro';
 import { demo, verifiedFacts as facts } from '../../lib/content';
 import { getLaunchConfig } from '../../lib/launch';
 import { getFeatures } from '../../config/features';
@@ -48,8 +48,6 @@ export const pricingCopy = {
 
 <HeroSection>
   <div className="hero-copy">
-    <span className="channel-badge">{launch.channelBadge}</span>
-
     # Малыш плохо спит — подскажем, что делать шаг за шагом
 
     <p className="hero-subtitle"><strong>Онлайн-помощник для родителей, который учитывает режим и каждый сон малыша.</strong></p>
@@ -92,6 +90,39 @@ export const pricingCopy = {
 </PainSection>
 
 <BenefitsSection>
+  <SectionHeading eyebrow="Один понятный сценарий">
+    ## Как это работает в обычный день
+
+    <p>Расскажите о малыше один раз. Дальше отмечайте сны — ИИ-помощник обновит режим дня и объяснит следующий шаг.</p>
+
+  </SectionHeading>
+
+<ProductFlow
+  demo={demo}
+  summary="Рассказали о малыше, отметили сон и получили следующий ориентир"
+  steps={[
+    {
+      number: '1',
+      visual: 'profile',
+      title: 'Сначала — несколько вопросов о малыше',
+      text: 'Ответьте на несколько вопросов о сне и текущей ситуации.'
+    },
+    {
+      number: '2',
+      visual: 'sleep',
+      title: 'После сна — короткая отметка',
+      text: 'Отметьте, когда малыш уснул и проснулся. Это займёт несколько секунд.'
+    },
+    {
+      number: '3',
+      visual: 'recommendation',
+      title: 'Помощник пересматривает ближайший ориентир',
+      text: 'Получите обновлённый режим дня, ближайший ориентир и короткое объяснение.'
+    }
+  ]}
+/>
+
+<div className="benefits-after-flow">
   <SectionHeading eyebrow="Меньше расчётов — больше ясности">
     ## Не нужно после каждого сна заново решать, что делать дальше
 
@@ -123,41 +154,14 @@ export const pricingCopy = {
     <p>Не идеальный график на бумаге.</p>
     <strong>Ориентир для того дня, который получается сейчас.</strong>
   </div>
+</div>
 </BenefitsSection>
 
 <ProductSection>
-  <SectionHeading eyebrow="Один понятный сценарий">
-    ## Как это работает в обычный день
-
-    <p>Расскажите о малыше один раз. Дальше отмечайте сны — ИИ-помощник обновит режим дня и объяснит следующий шаг.</p>
-
-  </SectionHeading>
-
-<ProductFlow
-  summary="Рассказали о малыше, отметили сон и получили следующий ориентир"
-  steps={[
-    {
-      number: '1',
-      title: 'Сначала — несколько вопросов о малыше',
-      text: 'Ответьте на несколько вопросов о сне и текущей ситуации.'
-    },
-    {
-      number: '2',
-      title: 'После сна — короткая отметка',
-      text: 'Отметьте, когда малыш уснул и проснулся. Это займёт несколько секунд.'
-    },
-    {
-      number: '3',
-      title: 'Помощник пересматривает ближайший ориентир',
-      text: 'Получите обновлённый режим дня, ближайший ориентир и короткое объяснение.'
-    }
-  ]}
-/>
-
   <div className="central-demo">
     <div className="central-demo__copy">
       <span className="eyebrow">После отметки сна</span>
-      ### Сразу видно, на что ориентироваться дальше
+      ## Сразу видно, на что ориентироваться дальше
 
       <p>Помощник покажет, когда наблюдать за усталостью, когда готовиться ко сну и почему ориентир изменился.</p>
     </div>
@@ -233,7 +237,7 @@ export const pricingCopy = {
 
 <OfferSection>
   <div className="offer-intro prose">
-    <SectionHeading eyebrow="Первая рекомендация — по вашему дню">
+    <SectionHeading eyebrow="Первая рекомендация — по вашему дню" align="center">
       ## Попробуйте помощника на сегодняшнем дне
     </SectionHeading>
 
@@ -257,22 +261,7 @@ export const pricingCopy = {
 
 {features.pricing && (
 
-  <div className="offer-steps">
-      <div className="benefits-grid">
-        <article className="benefit-card">
-          <p className="eyebrow">1 месяц</p>
-          <h3>{facts.pricing.monthly?.toLocaleString('ru-RU')} {facts.pricing.currency}</h3>
-          <p>{pricingCopy.monthlyNote}</p>
-        </article>
-
-        <article className="benefit-card">
-          <p className="eyebrow">1 год · выгоднее</p>
-          <h3>{facts.pricing.yearly?.toLocaleString('ru-RU')} {facts.pricing.currency}</h3>
-          <p>{pricingCopy.yearlyNote}</p>
-        </article>
-      </div>
-
-  </div>
+  <PricingPlans facts={facts.pricing} benefits={pricingBenefits} copy={pricingCopy} />
 )}
 
 <div className="offer-action">
@@ -282,10 +271,4 @@ export const pricingCopy = {
     <strong>как малыш спал сегодня?</strong>
   </p>
 </div>
-
-  <BoundaryNote
-    title="Помощник даёт ориентиры, а не медицинские заключения"
-    text="Если состояние или сон малыша вызывает тревогу, решение лучше обсудить с врачом или профильным специалистом."
-    linkLabel="Подробнее о границах продукта"
-  />
 </OfferSection>

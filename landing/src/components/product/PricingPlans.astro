@@ -1,0 +1,43 @@
+---
+interface PricingFacts {
+  monthly: number | null;
+  yearly: number | null;
+  currency: string | null;
+}
+
+interface Props {
+  facts: PricingFacts;
+  benefits: string[];
+  copy: {
+    monthlyNote: string;
+    yearlyNote: string;
+  };
+}
+
+const { facts, benefits, copy } = Astro.props;
+---
+
+<section class="pricing-plans" aria-label="Тарифы">
+  <article class="pricing-plan">
+    <div class="pricing-plan__header">
+      <p class="eyebrow">1 месяц</p>
+      <h3>{facts.monthly?.toLocaleString('ru-RU')} {facts.currency}</h3>
+      <p>{copy.monthlyNote}</p>
+    </div>
+    <ul>
+      {benefits.map((benefit) => <li>{benefit}</li>)}
+    </ul>
+  </article>
+
+  <article class="pricing-plan pricing-plan--featured">
+    <span class="pricing-plan__badge">Выгоднее</span>
+    <div class="pricing-plan__header">
+      <p class="eyebrow">1 год</p>
+      <h3>{facts.yearly?.toLocaleString('ru-RU')} {facts.currency}</h3>
+      <p>{copy.yearlyNote}</p>
+    </div>
+    <ul>
+      {benefits.map((benefit) => <li>{benefit}</li>)}
+    </ul>
+  </article>
+</section>

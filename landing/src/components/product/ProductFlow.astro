@@ -1,6 +1,10 @@
 ---
+import ProductStepVisual from './ProductStepVisual.astro';
+import type { DemoContent } from '../../config/content-schema';
+
 interface Step {
   number: string;
+  visual: 'profile' | 'sleep' | 'recommendation';
   title: string;
   text: string;
 }
@@ -8,9 +12,10 @@ interface Step {
 interface Props {
   steps: Step[];
   summary: string;
+  demo: DemoContent;
 }
 
-const { steps, summary } = Astro.props;
+const { steps, summary, demo } = Astro.props;
 ---
 
 <figure class="product-flow" aria-labelledby="product-flow-caption">
@@ -19,13 +24,14 @@ const { steps, summary } = Astro.props;
     {
       steps.map((step) => (
         <li>
-          <span class="product-flow__number">{step.number}</span>
-          <div>
-            <>
+          <div class="product-flow__copy">
+            <span class="product-flow__number">{step.number}</span>
+            <div>
               <h3>{step.title}</h3>
               <p>{step.text}</p>
-            </>
+            </div>
           </div>
+          <ProductStepVisual variant={step.visual} demo={demo} />
         </li>
       ))
     }
