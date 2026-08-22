@@ -3,8 +3,8 @@ channelBadge: 'Telegram'
 heroVariant: chat
 primary:
   channel: telegram
-  label: 'Открыть помощника в Telegram'
-  previewLabel: 'Посмотреть, как это работает'
+  label: 'Начать в Telegram'
+  previewLabel: 'Начать в Telegram'
   description: 'Откроется чат в Telegram'
   url: null
   fallbackUrl: '#product-demo'

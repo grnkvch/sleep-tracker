@@ -3,8 +3,8 @@ channelBadge: 'Веб-приложение'
 heroVariant: app
 primary:
   channel: pwa
-  label: 'Открыть веб-приложение'
-  previewLabel: 'Посмотреть, как это работает'
+  label: 'Начать в браузере'
+  previewLabel: 'Начать в браузере'
   description: 'Откроется веб-приложение'
   url: null
   fallbackUrl: '#product-demo'

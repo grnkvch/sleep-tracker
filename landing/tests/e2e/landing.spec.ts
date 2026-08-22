@@ -55,8 +55,6 @@ test('full page remains readable without JavaScript', async ({ browser }) => {
   const page = await context.newPage();
   await page.goto('http://127.0.0.1:4175/');
   await expect(page.locator('[data-macro]')).toHaveCount(5);
-  await expect(
-    page.getByRole('link', { name: 'Посмотреть, как это работает' }).first()
-  ).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Начать в Telegram' }).first()).toBeVisible();
   await context.close();
 });
